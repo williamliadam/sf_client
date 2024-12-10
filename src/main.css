@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn {
+    @apply hover:scale-105 transition-transform ease-in-out active:scale-100 cursor-pointer;
+  }
+}
