@@ -30,7 +30,7 @@ jobs:
           cache: 'pnpm'
           
       - name: Install dependencies
-        run: pnpm install | echo ${{vars}}
+        run: pnpm install
 
       - name: Build project
         run: pnpm run build
