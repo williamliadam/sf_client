@@ -9,6 +9,10 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    
+    env: 
+      NODE_ENV: production
+      PUBLIC_URL: https://williamliadam.github.io/sf_client/
 
     steps:
       - name: Checkout repo
