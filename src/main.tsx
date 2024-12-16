@@ -26,7 +26,7 @@ function initApp() {
 			<StrictMode>
 				<Provider store={store}>
 					<DndProvider backend={HTML5Backend}>
-						<BrowserRouter basename={process.env.PUBLIC_URL}>
+						<BrowserRouter basename={import.meta.env.BASE_URL}>
 							<App />
 						</BrowserRouter>
 					</DndProvider>
