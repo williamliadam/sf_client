@@ -9,9 +9,6 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    
-    env: 
-      PUBLIC_URL: ${{ vars.PUBLIC_URL }}
 
     steps:
       - name: Checkout repo
@@ -30,10 +27,10 @@ jobs:
           cache: 'pnpm'
           
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install && echo "PUBLIC_URL=${{ vars.PUBLIC_URL }}" >> .env
 
       - name: Build project
-        run: pnpm run build
+        run: pnpm run build 
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v4
