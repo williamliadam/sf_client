@@ -19,6 +19,7 @@ async function enableMocking() {
 }
 
 function initApp() {
+	console.log("env: ", process.env);
 	const root = document.getElementById("root");
 	if (root) {
 		createRoot(root).render(
