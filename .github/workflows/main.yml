@@ -46,6 +46,8 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
+    env: 
+      PUBLIC_URL: ${{ vars.PUBLIC_URL }}
 
     steps:
       - name: Download artifact
