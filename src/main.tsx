@@ -9,7 +9,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import { BrowserRouter } from "react-router";
 
 async function enableMocking() {
-	if (process.env.NODE_ENV !== "development") {
+	if (import.meta.env.MODE !== "development") {
 		return;
 	}
 	const { worker } = await import("./mocks/browser");
