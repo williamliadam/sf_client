@@ -27,10 +27,10 @@ jobs:
           cache: 'pnpm'
           
       - name: Install dependencies
-        run: pnpm install && echo "PUBLIC_URL=${{ vars.PUBLIC_URL }}" >> .env
+        run: pnpm install
 
       - name: Build project
-        run: pnpm run build 
+        run: echo "PUBLIC_URL=${{ vars.PUBLIC_URL }}" >> .env && pnpm run build 
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v4
