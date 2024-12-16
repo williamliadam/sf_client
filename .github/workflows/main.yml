@@ -11,8 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     
     env: 
-      NODE_ENV: production
-      PUBLIC_URL: https://williamliadam.github.io/sf_client/
+      PUBLIC_URL: ${{ vars.PUBLIC_URL }}
 
     steps:
       - name: Checkout repo
