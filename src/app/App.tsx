@@ -4,13 +4,21 @@ import { DayPlanPage } from "./pages/DayPlanPage";
 import { HomePage } from "./pages/HomePage";
 import { LoginPage } from "./pages/LoginPage";
 import { NoMatchPage } from "./pages/NoMatchPage";
+import { ProtectedRoute } from "./utils/ProtectedRoute";
 
 function App() {
 	return (
 		<Routes>
 			<Route path="/" element={<HomeLayout />}>
 				<Route index element={<HomePage />} />
-				<Route path="day_plan" element={<DayPlanPage />} />
+				<Route
+					path="day_plan"
+					element={
+						<ProtectedRoute>
+							<DayPlanPage />
+						</ProtectedRoute>
+					}
+				/>
 			</Route>
 			<Route path="/login" element={<LoginPage />} />
 			<Route path="*" element={<NoMatchPage />} />
