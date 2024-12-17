@@ -33,9 +33,9 @@ export const MenuItem = ({
 		<DragBox
 			id={id}
 			type="MENU"
-			className=" bg-blue-200 p-2 rounded-md shadow-md flex flex-col gap-2"
+			className=" bg-orange-200 p-2 rounded-md shadow-md flex flex-col gap-2"
 		>
-			<div className=" bg-blue-300 rounded-md p-2 shadow-sm flex justify-between items-center">
+			<div className=" bg-orange-300 rounded-md p-2 shadow-sm flex justify-between items-center">
 				{titleEditing ? (
 					<input
 						value={name}
@@ -70,7 +70,7 @@ export const MenuItem = ({
 				/>
 			</div>
 			{dishes?.length > 0 ? (
-				<div className=" bg-blue-300 rounded-md p-2 shadow-sm flex flex-col">
+				<div className=" bg-orange-300 rounded-md p-2 shadow-sm flex flex-col">
 					{dishes.map((dish, index) => (
 						<DishItem
 							key={dish.id}

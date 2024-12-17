@@ -19,9 +19,9 @@ export const Dropbox = memo(
 		});
 		let backgroundColor = "";
 		if (isOver) {
-			backgroundColor = "bg-orange-500";
+			backgroundColor = "bg-blue-500";
 		} else if (canDrop) {
-			backgroundColor = "bg-orange-200";
+			backgroundColor = "bg-blue-200";
 		}
 		return (
 			<div className={`${className} ${backgroundColor}`} ref={drop}>
