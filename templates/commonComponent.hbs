@@ -1,0 +1,13 @@
+import type { FC, PropsWithChildren } from "react";
+
+type {{pascalCase componentName}}Props = PropsWithChildren<{
+	test_id?: string;
+}>;
+
+export const Loading: FC<{{pascalCase componentName}}Props> = ({ test_id }) => {
+	return (
+		<div data-testid={test_id} className=" w-full h-full flex justify-center items-center">
+			This is {{pascalCase componentName}} Component
+		</div>
+	);
+};

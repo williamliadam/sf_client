@@ -27,7 +27,7 @@ export const DayPlanView = () => {
 	const { data: recipes, isLoading } = useMineRecipesQuery();
 
 	return (
-		<section className=" h-full w-full bg-blue-200 flex-1 gap-5 flex ">
+		<section className=" h-full w-full bg-orange-200 flex-1 gap-5 flex ">
 			<div className=" bg-orange-100 h-full w-1/3 p-2 flex flex-col justify-start rounded-md gap-2">
 				{isLoading && <Loading />}
 				{recipes?.map((recipe) => (
@@ -35,7 +35,7 @@ export const DayPlanView = () => {
 						key={recipe.id}
 						id={recipe.id}
 						type="RECIPE"
-						className=" bg-blue-200 p-2 rounded-md shadow-md"
+						className=" bg-orange-200 p-2 rounded-md shadow-md"
 					>
 						{recipe.name}
 					</DragBox>

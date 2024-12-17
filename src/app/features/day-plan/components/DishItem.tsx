@@ -37,13 +37,13 @@ export const DishItem = ({
 				className=" flex justify-between"
 				disableDrag={disabledInsert}
 			>
-				<div className=" bg-blue-200 rounded-full w-12 basis-12 p-2 text-center align-middle text-sm text-slate-700">
+				<div className=" bg-orange-200 rounded-full w-12 basis-12 p-2 text-center align-middle text-sm text-slate-700">
 					{index + 1}
 				</div>
-				<div className=" basis-full align-middle p-2 rounded-md bg-blue-200 mx-2">
+				<div className=" basis-full align-middle p-2 rounded-md bg-orange-200 mx-2">
 					{title}
 				</div>
-				<div className=" basis-12 bg-blue-200 rounded-full px-3 py-2 text-sm relative">
+				<div className=" basis-12 bg-orange-200 rounded-full px-3 py-2 text-sm relative">
 					Controllers
 					<div
 						className="absolute top-0 right-0 cursor-pointer"

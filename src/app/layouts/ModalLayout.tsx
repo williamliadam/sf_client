@@ -17,7 +17,7 @@ export function ModalLayout({
 			/>
 			<div className="absolute w-full h-full top-0 flex justify-center items-center">
 				<div
-					className={`bg-blue-400 w-fit h-fit p-6 rounded-md shadow-md flex flex-col transition-all ease-in-out duration-1000 ${isOpen ? "opacity-100" : "opacity-0 "}`}
+					className={`bg-orange-400 w-fit h-fit p-6 rounded-md shadow-md flex flex-col transition-all ease-in-out duration-1000 ${isOpen ? "opacity-100" : "opacity-0 "}`}
 				>
 					<div className=" text-lg text-white">Modal Title</div>
 					<div className=" py-6 max-w-xl">
@@ -32,7 +32,7 @@ export function ModalLayout({
 						<button
 							type="button"
 							onClick={onCancel}
-							className=" bg-blue-600 w-fit px-6 py-2 rounded-md shadow-md text-white transition-transform hover:scale-95"
+							className=" bg-orange-600 w-fit px-6 py-2 rounded-md shadow-md text-white transition-transform hover:scale-95"
 						>
 							Cancel
 						</button>
