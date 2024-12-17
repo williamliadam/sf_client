@@ -3,6 +3,7 @@ import { HomeLayout } from "@layouts/HomeLayout";
 import { DayPlanPage } from "./pages/DayPlanPage";
 import { HomePage } from "./pages/HomePage";
 import { LoginPage } from "./pages/LoginPage";
+import { NoMatchPage } from "./pages/NoMatchPage";
 
 function App() {
 	return (
@@ -12,6 +13,7 @@ function App() {
 				<Route path="day_plan" element={<DayPlanPage />} />
 			</Route>
 			<Route path="/login" element={<LoginPage />} />
+			<Route path="*" element={<NoMatchPage />} />
 		</Routes>
 	);
 }
