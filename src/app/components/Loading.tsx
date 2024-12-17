@@ -1,8 +1,13 @@
+import type { FC, PropsWithChildren } from "react";
 import { FiLoader } from "react-icons/fi";
 
-export const Loading = () => {
+type LoadingProps = PropsWithChildren<{
+	test_id?: string;
+}>;
+
+export const Loading: FC<LoadingProps> = ({ test_id }) => {
 	return (
-		<div className=" w-full h-full flex justify-center items-center">
+		<div data-testid={test_id} className=" w-full h-full flex justify-center items-center">
 			<FiLoader className=" animate-spin text-4xl text-blue-500" />
 		</div>
 	);
