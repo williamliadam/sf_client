@@ -32,7 +32,7 @@ export const LoginFormAction = async (previousState: State, formData: FormData) 
     };
   }
   return {
-    message: 'Login successfully.'
+    message: 'Login successfully.',
   };
 }
 const initialState = { message: '', errors: {} };
