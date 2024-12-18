@@ -5,10 +5,11 @@ type DropBoxProps = {
 	accept: string[];
 	onDrop: (item: any) => void;
 	className?: string;
+	showOnlyCanDrop?: boolean;
 } & PropsWithChildren;
 
 export const Dropbox = memo(
-	({ children, accept, onDrop, className }: DropBoxProps) => {
+	({ children, accept, onDrop, className, showOnlyCanDrop = false }: DropBoxProps) => {
 		const [{ isOver, canDrop }, drop] = useDrop({
 			accept,
 			drop: onDrop,
@@ -18,13 +19,23 @@ export const Dropbox = memo(
 			}),
 		});
 		let backgroundColor = "";
+		let visible = "";
 		if (isOver) {
 			backgroundColor = "bg-blue-500";
 		} else if (canDrop) {
 			backgroundColor = "bg-blue-200";
+		} else {
+			backgroundColor = "bg-gray-100";
+			if(showOnlyCanDrop) {
+				 visible = "hidden";
+			}
 		}
+		const baseClass =
+			"rounded-md shadow-md border-2 border-dashed transition-colors duration-300";
+		const combinedClass = `${baseClass} ${className} ${backgroundColor} ${visible}`;
+
 		return (
-			<div className={`${className} ${backgroundColor}`} ref={drop}>
+			<div className={combinedClass} ref={drop}>
 				{children}
 			</div>
 		);

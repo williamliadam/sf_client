@@ -1,8 +1,6 @@
 import { TiDelete } from "react-icons/ti";
 import { DishItem } from "./DishItem";
-import { DragBox } from "./DragBox";
-import { DragBoxTypes, type MenuType } from "../types";
-import { Dropbox } from "./DropBox";
+import type { MenuType } from "../types";
 import { useState } from "react";
 import { useOutsideClick } from "@app/utils/useOutsideClick";
 
@@ -30,12 +28,8 @@ export const MenuItem = ({
 		setTitleEditing(false);
 	});
 	return (
-		<DragBox
-			id={id}
-			type="MENU"
-			className=" bg-orange-200 p-2 rounded-md shadow-md flex flex-col gap-2"
-		>
-			<div className=" bg-orange-300 rounded-md p-2 shadow-sm flex justify-between items-center">
+		<div className="bg-white p-4 rounded-md shadow-lg flex flex-col gap-4">
+			<div className="bg-gray-100 rounded-md p-4 shadow-sm flex justify-between items-center">
 				{titleEditing ? (
 					<input
 						value={name}
@@ -50,10 +44,11 @@ export const MenuItem = ({
 								setTitleEditing(false);
 							}
 						}}
+						className="p-2 rounded-md border border-gray-300"
 					/>
 				) : (
 					<div
-						className=" cursor-pointer min-w-4 min-h-4"
+						className="cursor-pointer text-lg font-semibold"
 						onDoubleClick={() => {
 							setTitleEditing(true);
 						}}
@@ -62,7 +57,7 @@ export const MenuItem = ({
 					</div>
 				)}
 				<TiDelete
-					className=" btn"
+					className="text-red-500 cursor-pointer hover:text-red-700 transition"
 					size={24}
 					onClick={() => {
 						onDelete(id);
@@ -70,33 +65,22 @@ export const MenuItem = ({
 				/>
 			</div>
 			{dishes?.length > 0 ? (
-				<div className=" bg-orange-300 rounded-md p-2 shadow-sm flex flex-col">
+				<div className="bg-gray-100 rounded-md p-4 shadow-sm flex flex-col gap-2">
 					{dishes.map((dish, index) => (
 						<DishItem
 							key={dish.id}
 							disabledInsert={disabledInsert}
 							index={index}
 							{...dish}
-							onInsert={(item, index) => {
-								if (onInsert) {
-									onInsert(item, id, index);
-								}
-							}}
-							onDelete={(dishId) => {
-								if (onDeleteDish) {
-									onDeleteDish(id, dishId);
-								}
-							}}
+							onInsert={(item, idx) => onInsert?.(item, id, idx)}
+							onDelete={(dishId) => onDeleteDish?.(id, dishId)}
 						/>
 					))}
 				</div>
 			) : (
-				<Dropbox
-					accept={[DragBoxTypes.RECIPE]}
-					onDrop={() => {}}
-					className="rounded-md h-8  flex justify-center items-center"
-				/>
+				<div className="text-center text-gray-500">No dishes available</div>
 			)}
-		</DragBox>
+	
+		</div>
 	);
 };

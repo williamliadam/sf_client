@@ -11,14 +11,7 @@ function App() {
 		<Routes>
 			<Route path="/" element={<HomeLayout />}>
 				<Route index element={<HomePage />} />
-				<Route
-					path="day_plan"
-					element={
-						<ProtectedRoute>
-							<DayPlanPage />
-						</ProtectedRoute>
-					}
-				/>
+				<Route path="day_plan" element={<DayPlanPage />} />
 			</Route>
 			<Route path="/login" element={<LoginPage />} />
 			<Route path="*" element={<NoMatchPage />} />

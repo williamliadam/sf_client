@@ -8,7 +8,7 @@ import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { BrowserRouter } from "react-router";
 import { AuthProvider } from "@app/utils/authContext.tsx";
-
+import './i18n';
 async function enableMocking() {
 	if (import.meta.env.MODE !== "development") {
 		return;
@@ -28,7 +28,7 @@ function initApp() {
 					<DndProvider backend={HTML5Backend}>
 						<BrowserRouter basename={import.meta.env.VITE_PUBLIC_URL || "/"}>
 							<AuthProvider>
-								<App />
+									<App />
 							</AuthProvider>
 						</BrowserRouter>
 					</DndProvider>

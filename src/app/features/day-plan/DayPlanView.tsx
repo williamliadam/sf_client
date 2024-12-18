@@ -1,115 +1,98 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
-	addMenuToDayPlan,
 	deleteDishFromMenu,
 	deleteMenu,
-	deleteMenuFromDayPlan,
 	insertDishToMenu,
 	insertRecipeToMenu,
 	moveRecipeToMenu,
-	selectDayPlan,
 	selectMenus,
 	updateMenu,
 } from "./slices/dayPlanSlice";
-import { TiPlus } from "react-icons/ti";
 import { DragBox } from "./components/DragBox";
 import { Dropbox } from "./components/DropBox";
 import { MenuItem } from "./components/MenuItem";
 import { DragBoxTypes } from "./types";
 import { useMineRecipesQuery } from "./slices/dayPlanSliceApi";
 import { Loading } from "@app/components/Loading";
+import { TiPlus } from "react-icons/ti";
 
 export const DayPlanView = () => {
 	const dispatch = useDispatch();
-	const dayPlan = useSelector(selectDayPlan);
-
 	const menus = useSelector(selectMenus);
 	const { data: recipes, isLoading } = useMineRecipesQuery();
 
+	if (isLoading) {
+		return <Loading />;
+	}
+
 	return (
-		<section className=" h-full w-full bg-orange-200 flex-1 gap-5 flex ">
-			<div className=" bg-orange-100 h-full w-1/3 p-2 flex flex-col justify-start rounded-md gap-2">
-				{isLoading && <Loading />}
-				{recipes?.map((recipe) => (
-					<DragBox
-						key={recipe.id}
-						id={recipe.id}
-						type="RECIPE"
-						className=" bg-orange-200 p-2 rounded-md shadow-md"
-					>
-						{recipe.name}
-					</DragBox>
-				))}
-			</div>
-			<div className="bg-orange-100 h-full w-1/3 p-2 rounded-md flex flex-col justify-start gap-2">
-				{menus.map((menu, index) => (
-					<MenuItem
-						key={menu.id}
-						index={index}
-						{...menu}
-						onNameChange={(name) => {
-							dispatch(updateMenu({ id: menu.id, name }));
-						}}
-						onDelete={(id) => {
-							dispatch(deleteMenu(id));
-						}}
-						onInsert={(item, menuId, index) => {
-							if (item.type === DragBoxTypes.RECIPE) {
-								const recipe = recipes?.find((r) => r.id === item.id);
-								if (recipe) {
-									dispatch(insertRecipeToMenu({ recipe, menuId, index }));
+		<div className="flex flex-col items-center min-h-screen bg-gradient-to-r from-green-400 to-blue-500 p-6">
+			<h1 className="text-4xl font-bold text-white mb-6">Day Plan</h1>
+			<div className="flex w-full max-w-5xl gap-6">
+				<div className="bg-white p-4 rounded-md shadow-lg w-1/3 flex flex-col gap-4">
+					<h2 className="text-2xl font-semibold text-gray-800">Recipes</h2>
+					{recipes?.map((recipe) => (
+						<DragBox
+							key={recipe.id}
+							id={recipe.id}
+							type="RECIPE"
+							className="flex justify-between items-center p-4 rounded-md shadow-md bg-blue-200 hover:bg-blue-300 transition"
+						>
+							<div className="flex-1 text-gray-800 font-semibold">
+								{recipe.name}
+							</div>
+							<div className="bg-blue-400 text-white rounded-full px-3 py-1 text-sm font-bold">
+								Drag
+							</div>
+						</DragBox>
+					))}
+				</div>
+				<div className="bg-white p-4 rounded-md shadow-lg w-2/3 flex flex-col gap-4">
+					<h2 className="text-2xl font-semibold text-gray-800">Menus</h2>
+					{menus.map((menu, index) => (
+						<MenuItem
+							key={menu.id}
+							index={index}
+							{...menu}
+							onNameChange={(name) => {
+								dispatch(updateMenu({ id: menu.id, name }));
+							}}
+							onDelete={(id) => {
+								dispatch(deleteMenu(id));
+							}}
+							onInsert={(item, menuId, index) => {
+								if (item.type === DragBoxTypes.RECIPE) {
+									const recipe = recipes?.find((r) => r.id === item.id);
+									if (recipe) {
+										dispatch(insertRecipeToMenu({ recipe, menuId, index }));
+									}
+								} else if (item.type === DragBoxTypes.DISH) {
+									const dish = menu.dishes?.find((d) => d.id === item.id);
+									if (dish) {
+										dispatch(deleteDishFromMenu({ dishId: dish.id, menuId }));
+										dispatch(insertDishToMenu({ dish, menuId, index }));
+									}
 								}
-							} else if (item.type === DragBoxTypes.DISH) {
-								const dish = menu.dishes?.find((d) => d.id === item.id);
-								if (dish) {
-									dispatch(deleteDishFromMenu({ dishId: dish.id, menuId }));
-									dispatch(insertDishToMenu({ dish, menuId, index }));
-								}
+							}}
+							onDeleteDish={(menuId, dishId) => {
+								dispatch(deleteDishFromMenu({ dishId, menuId }));
+							}}
+						/>
+					))}
+					<Dropbox
+						accept={[DragBoxTypes.RECIPE]}
+						onDrop={(item) => {
+							const recipe = recipes?.find((r) => r.id === item.id);
+							if (recipe) {
+								dispatch(moveRecipeToMenu({ recipe }));
 							}
 						}}
-						onDeleteDish={(menuId, dishId) => {
-							dispatch(deleteDishFromMenu({ dishId, menuId }));
-						}}
-					/>
-				))}
-				<Dropbox
-					accept={[DragBoxTypes.RECIPE]}
-					onDrop={(item) => {
-						console.log("item:", item);
-						const recipe = recipes?.find((r) => r.id === item.id);
-						if (recipe) {
-							dispatch(moveRecipeToMenu({ recipe }));
-						}
-					}}
-					className="rounded-md h-8 mt-2 flex justify-center items-center"
-				>
-					<TiPlus size={24} />
-				</Dropbox>
+						className="flex items-center justify-center  border-2 border-dashed border-gray-400 rounded-md p-4 hover:bg-gray-200 transition"
+					>
+						<TiPlus className="text-4xl text-gray-800" />
+					</Dropbox>
+				</div>
 			</div>
-			<Dropbox
-				accept={[DragBoxTypes.MENU]}
-				onDrop={(item) => {
-					if (item.type === DragBoxTypes.MENU) {
-						const menu = menus.find((m) => m.id === item.id);
-						if (menu) {
-							dispatch(addMenuToDayPlan(menu));
-						}
-					}
-				}}
-				className=" bg-orange-100 h-full w-1/3 p-2 rounded-md"
-			>
-				{dayPlan.menus.map((menu, index) => (
-					<MenuItem
-						disabledInsert
-						key={menu.id}
-						index={index}
-						{...menu}
-						onDelete={(id) => {
-							dispatch(deleteMenuFromDayPlan(id));
-						}}
-					/>
-				))}
-			</Dropbox>
-		</section>
+		</div>
 	);
 };

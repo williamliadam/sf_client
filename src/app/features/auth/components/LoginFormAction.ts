@@ -3,12 +3,12 @@ import { z } from 'zod';
 
 const logingSchema = z.object({
   email: z.string({
-    message: "Please enter a valid email address",
+    message: "emailInvalid",
   }).email({
-    message: "Please enter a valid email address",
+    message: "emailInvalid",
   }),
   password: z.string({
-    message: "Password must be at least 6 characters",
+    message: "passwordMin",
   }).min(6),
 });
 export type LoginFormActionType = z.infer<typeof logingSchema>;
@@ -28,11 +28,11 @@ export const LoginFormAction = async (previousState: State, formData: FormData) 
   if (!validatedFields.success) {
     return {
       errors: validatedFields.error.flatten().fieldErrors,
-      message: 'Missing or incorrect fields. Failed to Login.'
+      message: 'loginError'
     };
   }
   return {
-    message: 'Login successfully.',
+    message: 'loginSuccess',
   };
 }
 const initialState = { message: '', errors: {} };
