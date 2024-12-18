@@ -1,3 +1,4 @@
+import type { FC } from "react";
 import { DragBoxTypes, type DishType } from "../types";
 import { DragBox } from "./DragBox";
 import { Dropbox } from "./DropBox";
@@ -9,57 +10,60 @@ type DishItemProps = {
 	onDelete: (id: string) => void;
 } & DishType;
 
-export const DishItem = ({
-	index,
+export const DishItem: FC<DishItemProps> = ({
 	id,
+	index,
 	title,
-	onInsert,
 	disabledInsert = false,
+	onInsert,
 	onDelete,
-}: DishItemProps) => {
+}) => {
 	return (
 		<>
-			{index === 0 && (
+			{!disabledInsert && index === 0 && (
 				<Dropbox
-					accept={
-						disabledInsert ? [] : [DragBoxTypes.RECIPE, DragBoxTypes.DISH]
-					}
+					accept={[DragBoxTypes.RECIPE, DragBoxTypes.DISH]}
 					onDrop={(item) => {
 						onInsert(item, 0);
 					}}
-					className="  p-1  rounded-md"
+					className="  hover:bg-gray-200 transition py-1"
 				/>
 			)}
 
 			<DragBox
 				id={id}
 				type="DISH"
-				className=" flex justify-between"
+				className="flex justify-between items-center p-4 rounded-md shadow-md bg-white hover:bg-gray-100 transition"
 				disableDrag={disabledInsert}
 			>
-				<div className=" bg-orange-200 rounded-full w-12 basis-12 p-2 text-center align-middle text-sm text-slate-700">
+				<div className="bg-blue-500 text-white rounded-full w-12 h-12 flex items-center justify-center text-sm font-bold">
 					{index + 1}
 				</div>
-				<div className=" basis-full align-middle p-2 rounded-md bg-orange-200 mx-2">
+				<div className="flex-1 mx-4 p-2 rounded-md bg-blue-100 text-center text-blue-800 font-semibold">
 					{title}
 				</div>
-				<div className=" basis-12 bg-orange-200 rounded-full px-3 py-2 text-sm relative">
-					Controllers
-					<div
-						className="absolute top-0 right-0 cursor-pointer"
-						onClick={() => onDelete(id)}
-						onKeyUp={() => onDelete(id)}
-					/>
+				<div
+					className="bg-red-500 text-white rounded-full px-3 py-2 text-sm relative flex items-center justify-center cursor-pointer hover:bg-red-600 transition"
+					onClick={() => onDelete(id)}
+					onKeyDown={(e) => {
+						if (e.key === "Enter") {
+							onDelete(id);
+						}
+					}}
+				>
+					<span className="material-icons">delete</span>
 				</div>
 			</DragBox>
 
-			<Dropbox
-				accept={disabledInsert ? [] : [DragBoxTypes.RECIPE, DragBoxTypes.DISH]}
-				onDrop={(item) => {
-					onInsert(item, index + 1);
-				}}
-				className="  p-1  rounded-md"
-			/>
+			{!disabledInsert && (
+				<Dropbox
+					accept={[DragBoxTypes.RECIPE, DragBoxTypes.DISH]}
+					onDrop={(item) => {
+						onInsert(item, index + 1);
+					}}
+					className="    hover:bg-gray-200 transition py-1"
+				/>
+			)}
 		</>
 	);
 };

@@ -23,15 +23,21 @@ export const DragBox = ({
 			handlerId: monitor.getHandlerId(),
 		}),
 	}));
+	const baseClass =
+		"p-4 rounded-md shadow-md transition-transform transform hover:scale-105";
+	const draggingClass = "opacity-50";
+	const combinedClass = `${baseClass} ${className} ${isDragging ? draggingClass : ""}`;
+
 	if (disableDrag) {
-		return <div className={className}>{children}</div>;
+		return <div className={combinedClass}>{children}</div>;
 	}
+
 	return isDragging ? (
-		<div className={`${className} opacity-50`} ref={dragPreview}>
+		<div className={combinedClass} ref={dragPreview}>
 			{children}
 		</div>
 	) : (
-		<div className={className} ref={drag}>
+		<div className={combinedClass} ref={drag}>
 			{children}
 		</div>
 	);
