@@ -13,25 +13,26 @@ export function HomeLayout() {
 					<div className="text-2xl font-bold text-white font-serif flex gap-2 items-center">
 						<Dish />
 						SFood
+						<nav className="flex gap-4">
+							<NavLink
+								to="/"
+								className={({ isActive }) =>
+									`${isActive ? "bg-blue-700" : "bg-blue-800"} text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-600 transition`
+								}
+							>
+								Home
+							</NavLink>
+							<NavLink
+								to="/day_plan"
+								className={({ isActive }) =>
+									`${isActive ? "bg-blue-700" : "bg-blue-800"} text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-600 transition`
+								}
+							>
+								Day Plan
+							</NavLink>
+						</nav>
 					</div>
-					<nav className="flex gap-4">
-						<NavLink
-							to="/"
-							className={({ isActive }) =>
-								`${isActive ? "bg-orange-700" : "bg-orange-800"} text-white px-4 py-2 rounded-md shadow-md hover:bg-orange-600 transition`
-							}
-						>
-							Home
-						</NavLink>
-						<NavLink
-							to="/day_plan"
-							className={({ isActive }) =>
-								`${isActive ? "bg-orange-700" : "bg-orange-800"} text-white px-4 py-2 rounded-md shadow-md hover:bg-orange-600 transition`
-							}
-						>
-							Day Plan
-						</NavLink>
-					</nav>
+
 					<div className="flex items-center gap-4">
 						<Switch
 							value={language === "zh"}
