@@ -1,5 +1,10 @@
+import { useLoginMutation } from '@app/services/auth';
 import { useActionState } from 'react';
+import { useDispatch } from 'react-redux';
 import { z } from 'zod';
+import { setCredentials } from '../authSlice';
+import { useNavigate } from 'react-router';
+
 
 const logingSchema = z.object({
   email: z.string({
@@ -19,8 +24,7 @@ export type State = {
   };
   message?: string | null;
 };
-export const LoginFormAction = async (previousState: State, formData: FormData) => {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+export const LoginFormAction = async (previousState: State, formData: FormData, login: any) => {
   const validatedFields = logingSchema.safeParse({
     email: formData.get("email"),
     password: formData.get("password"),
@@ -31,14 +35,33 @@ export const LoginFormAction = async (previousState: State, formData: FormData) 
       message: 'loginError'
     };
   }
+  const result = await login(validatedFields.data)
+  if (result) {
+    return result
+  }
   return {
     message: 'loginSuccess',
   };
 }
 const initialState = { message: '', errors: {} };
 export const useLoginFormState = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [login] = useLoginMutation()
+  const loginHandler = async (formState: LoginFormActionType) => {
+    try {
+      const user = await login(formState).unwrap()
+      dispatch(setCredentials(user))
+      navigate('/')
+    } catch (err) {
+      console.error(err)
+      return {
+        message: 'loginError'
+      }
+    }
+  }
   const [state, formAction, isPending] = useActionState(
-    LoginFormAction,
+    (previousState: State, formData: FormData) => LoginFormAction(previousState, formData, loginHandler),
     initialState // initial state
   );
 

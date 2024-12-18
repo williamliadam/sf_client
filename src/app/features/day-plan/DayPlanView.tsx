@@ -12,9 +12,9 @@ import { DragBox } from "./components/DragBox";
 import { Dropbox } from "./components/DropBox";
 import { MenuItem } from "./components/MenuItem";
 import { DragBoxTypes } from "./types";
-import { useMineRecipesQuery } from "./slices/dayPlanSliceApi";
 import { Loading } from "@app/components/Loading";
 import { TiPlus } from "react-icons/ti";
+import { useMineRecipesQuery } from "@app/services/dayPlan";
 
 export const DayPlanView = () => {
 	const dispatch = useDispatch();

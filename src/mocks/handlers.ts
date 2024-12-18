@@ -1,5 +1,6 @@
-import { http, HttpResponse } from 'msw'
-
+import { http, HttpResponse, delay } from 'msw'
+import { createId } from '@paralleldrive/cuid2';
+const token = createId();
 export const handlers = [
   http.get('/api/test', () => {
     return HttpResponse.json({
@@ -15,5 +16,16 @@ export const handlers = [
       { id: 3, name: "Dumpling" },
       { id: 4, name: "Rice" },
     ])
-  })
+  }),
+  http.post('/api/login', async () => {
+    await delay(1000)
+    return HttpResponse.json({
+      user: {
+        first_name: 'Test',
+        last_name: 'User',
+      },
+      token,
+    })
+
+  }),
 ]

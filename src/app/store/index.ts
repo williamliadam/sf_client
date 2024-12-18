@@ -1,11 +1,13 @@
-import { dayPlanSlice } from "@app/features/day-plan/slices/dayPlanSlice";
+import dayPlanReducer from "@app/features/day-plan/slices/dayPlanSlice";
+import authReducer from "@app/features/auth/authSlice";
 import { configureStore } from "@reduxjs/toolkit";
-import { emptySplitApi } from "./emptySliceApi";
+import apiReducer, { emptySplitApi } from "@app/services/emptySliceApi";
 
 export const store = configureStore({
   reducer: {
-    api: emptySplitApi.reducer,
-    dayPlan: dayPlanSlice.reducer,
+    api: apiReducer,
+    auth: authReducer,
+    dayPlan: dayPlanReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(emptySplitApi.middleware),

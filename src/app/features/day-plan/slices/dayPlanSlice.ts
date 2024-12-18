@@ -105,3 +105,5 @@ export const { setDayPlan, addRecipe, addMenu, updateMenu, addDishToMenu, moveRe
 export const selectDayPlan = (state: RootState) => state.dayPlan.dayPlan;
 export const selectRecipes = (state: RootState) => state.dayPlan.recipes;
 export const selectMenus = (state: RootState) => state.dayPlan.menus;
+
+export default dayPlanSlice.reducer;
