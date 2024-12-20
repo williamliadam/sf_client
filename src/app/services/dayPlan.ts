@@ -9,7 +9,7 @@ const dayPlanApi = emptySplitApi.injectEndpoints({
       query: () => 'test',
     }),
     mineRecipes: build.query<RecipeType[], void>({
-      query: () => 'recipe/findAll',
+      query: () => 'recipe',
     }),
   }),
   overrideExisting: false,

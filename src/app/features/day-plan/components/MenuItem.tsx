@@ -1,8 +1,9 @@
 import { TiDelete } from "react-icons/ti";
 import { DishItem } from "./DishItem";
 import type { MenuType } from "../types";
-import { useState } from "react";
+import { type ChangeEvent, useState } from "react";
 import { useOutsideClick } from "@app/utils/useOutsideClick";
+import { useDebounceFn } from "ahooks";
 
 type MenuItemProps = {
 	index: number;
@@ -23,25 +24,32 @@ export const MenuItem = ({
 	onDeleteDish,
 }: MenuItemProps) => {
 	const [titleEditing, setTitleEditing] = useState(false);
-
+	const [title, setTitle] = useState(name);
 	const ref = useOutsideClick<HTMLInputElement>(() => {
 		setTitleEditing(false);
+		if (title !== name) {
+			onNameChange?.(title);
+		}
 	});
+
 	return (
 		<div className="bg-white p-4 rounded-md shadow-lg flex flex-col gap-4">
 			<div className="bg-gray-100 rounded-md p-4 shadow-sm flex justify-between items-center">
 				{titleEditing ? (
 					<input
-						value={name}
+						value={title}
 						onChange={(e) => {
-							if (onNameChange) {
-								onNameChange(e.target.value);
-							}
+							setTitle(e.target.value);
 						}}
 						ref={ref}
 						onKeyDown={(e) => {
 							if (e.key === "Enter" || e.key === "Escape") {
 								setTitleEditing(false);
+								if (e.key === "Enter") {
+									onNameChange?.(title);
+								} else {
+									setTitle(name);
+								}
 							}
 						}}
 						className="p-2 rounded-md border border-gray-300"
@@ -80,7 +88,6 @@ export const MenuItem = ({
 			) : (
 				<div className="text-center text-gray-500">No dishes available</div>
 			)}
-	
 		</div>
 	);
 };

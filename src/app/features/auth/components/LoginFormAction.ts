@@ -1,9 +1,9 @@
 import { useLoginMutation } from '@app/services/auth';
-import { useActionState } from 'react';
+import { use, useActionState } from 'react';
 import { useDispatch } from 'react-redux';
 import { z } from 'zod';
 import { setCredentials } from '../authSlice';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams, useSearchParams } from 'react-router';
 
 
 const logingSchema = z.object({
@@ -45,6 +45,7 @@ export const LoginFormAction = async (previousState: State, formData: FormData, 
 }
 const initialState = { message: '', errors: {} };
 export const useLoginFormState = () => {
+  const [searchParams] = useSearchParams()
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [login] = useLoginMutation()
@@ -52,7 +53,8 @@ export const useLoginFormState = () => {
     try {
       const user = await login(formState).unwrap()
       dispatch(setCredentials(user))
-      navigate('/')
+      const redirectTo = searchParams.get('redirectTo')
+      navigate(redirectTo || '/')
     } catch (err) {
       console.error(err)
       return {

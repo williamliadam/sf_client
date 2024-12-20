@@ -1,11 +1,17 @@
 import { NavLink, Outlet } from "react-router";
 import Dish from "@assets/dish.svg?react";
-
 import { useLanguage } from "@app/utils/useLanguage";
-import { Switch } from "@app/components/Switch";
+import { LanguageSwitch } from "@app/components/LanguageSwitch";
+import { useRef, useState } from "react";
+import { useClickAway } from "ahooks";
 
 export function HomeLayout() {
 	const [language, setLanguage] = useLanguage();
+	const [showLogout, setShowLogout] = useState(false);
+	const ref = useRef<HTMLButtonElement>(null);
+	useClickAway(() => {
+		setShowLogout(false);
+	}, ref);
 	return (
 		<section className="min-h-screen flex flex-col">
 			<header className="bg-gradient-to-r from-blue-500 to-purple-600 p-6 shadow-lg">
@@ -34,15 +40,35 @@ export function HomeLayout() {
 					</div>
 
 					<div className="flex items-center gap-4">
-						<Switch
+						<LanguageSwitch
 							value={language === "zh"}
 							onChange={(state) => {
 								setLanguage(state ? "zh" : "en");
 							}}
 						/>
-						<div className="shadow-md hover:scale-105 cursor-pointer transition-transform ease-in-out rounded-full w-12 h-12 bg-slate-500 text-white flex justify-center items-center">
+						<div
+							onClick={() => setShowLogout(!showLogout)}
+							onKeyDown={() => {}}
+							className="shadow-md hover:scale-105 cursor-pointer transition-transform ease-in-out rounded-full w-12 h-12 bg-slate-500 text-white flex justify-center items-center"
+						>
 							U
 						</div>
+
+						{showLogout && (
+							<div className="absolute right-2 top-20 mt-2 w-48 bg-white border border-gray-300 rounded-md shadow-lg">
+								<button
+									ref={ref}
+									type="button"
+									className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+									onClick={() => {
+										// 处理退出逻辑
+										console.log("Logout");
+									}}
+								>
+									Logout
+								</button>
+							</div>
+						)}
 					</div>
 				</div>
 			</header>
