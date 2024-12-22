@@ -48,3 +48,5 @@ export default tseslint.config({
   },
 })
 ```
+
+deploy by github actions
