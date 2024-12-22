@@ -17,7 +17,10 @@ i18n
   // init i18next
   // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
-    debug: true,
+    debug: import.meta.env.MODE === "development",
+    backend: {
+      loadPath: `${import.meta.env.VITE_PUBLIC_URL}locales/{{lng}}/{{ns}}.json`,
+    },
     supportedLngs: ['en', 'zh', 'dev'],
     lng: "zh",
     fallbackLng: "zh",
