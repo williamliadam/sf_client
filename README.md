@@ -49,4 +49,4 @@ export default tseslint.config({
 })
 ```
 
-deploy by github actions
+deploy by github actions hello
