@@ -1,0 +1,25 @@
+{
+	"title": "欢迎使用Single Food",
+	"description": {
+		"part1": "这是一个William的个人项目，用于展示个人的技朮和作品。",
+		"part2": "本项目使用了React, Redux, Node.js, Nest.js, Prisma,  i18next, React-i18next, React-Router, zod. "
+	},
+	"language": {
+		"en": "英",
+		"zh": "中"
+	},
+	"languageCode": "zh",
+	"menu": {
+		"home": "首页",
+		"about": "关于",
+		"contact": "联系",
+		"login": "登录",
+		"logout": "登出",
+		"register": "注册",
+		"profile": "个人资料",
+		"admin": "管理员",
+		"user": "用户",
+		"setting": "设置",
+		"language": "语言"
+	}
+}

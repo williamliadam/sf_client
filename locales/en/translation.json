@@ -1,0 +1,25 @@
+{
+	"title": " Welcome to Single Food",
+	"description": {
+		"part1": "This is a personal project of William, used to showcase personal skills and works.",
+		"part2": "This project uses React, Redux, Node.js, Nest.js, Prisma, i18next, React-i18next, React-Router, zod."
+	},
+	"language": {
+		"en": "EN",
+		"zh": "ZH"
+	},
+  "languageCode": "en",
+	"menu": {
+		"home": "Home",
+		"about": "About",
+		"contact": "Contact",
+		"login": "Login",
+		"logout": "Logout",
+		"register": "Register",
+		"profile": "Profile",
+		"admin": "Admin",
+		"user": "User",
+		"setting": "Setting",
+		"language": "Language"
+	}
+}
