@@ -19,7 +19,7 @@ i18n
   .init({
     debug: import.meta.env.MODE === "development",
     backend: {
-      loadPath: `${import.meta.env.VITE_PUBLIC_URL}locales/{{lng}}/{{ns}}.json`,
+      loadPath: 'locales/{{lng}}/{{ns}}.json',
     },
     supportedLngs: ['en', 'zh', 'dev'],
     lng: "zh",
