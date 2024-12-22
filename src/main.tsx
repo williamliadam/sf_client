@@ -9,14 +9,13 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import { BrowserRouter } from "react-router";
 import "./i18n";
 async function enableMocking() {
-	return;
-	// if (import.meta.env.MODE !== "development") {
-	// 	return;
-	// }
-	// const { worker } = await import("./mocks/browser");
-	// return worker.start({
-	// 	onUnhandledRequest: "bypass",
-	// });
+	if (import.meta.env.MODE !== "development") {
+		return;
+	}
+	const { worker } = await import("./mocks/browser");
+	return worker.start({
+		onUnhandledRequest: "bypass",
+	});
 }
 
 function initApp() {
