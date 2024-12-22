@@ -1,4 +1,4 @@
-import { memo, type PropsWithChildren } from "react";
+import { memo, type Ref, type PropsWithChildren } from "react";
 import { useDrop } from "react-dnd";
 
 type DropBoxProps = {
@@ -9,7 +9,13 @@ type DropBoxProps = {
 } & PropsWithChildren;
 
 export const Dropbox = memo(
-	({ children, accept, onDrop, className, showOnlyCanDrop = false }: DropBoxProps) => {
+	({
+		children,
+		accept,
+		onDrop,
+		className,
+		showOnlyCanDrop = false,
+	}: DropBoxProps) => {
 		const [{ isOver, canDrop }, drop] = useDrop({
 			accept,
 			drop: onDrop,
@@ -26,8 +32,8 @@ export const Dropbox = memo(
 			backgroundColor = "bg-blue-200";
 		} else {
 			backgroundColor = "bg-gray-100";
-			if(showOnlyCanDrop) {
-				 visible = "hidden";
+			if (showOnlyCanDrop) {
+				visible = "hidden";
 			}
 		}
 		const baseClass =
@@ -35,7 +41,7 @@ export const Dropbox = memo(
 		const combinedClass = `${baseClass} ${className} ${backgroundColor} ${visible}`;
 
 		return (
-			<div className={combinedClass} ref={drop}>
+			<div className={combinedClass} ref={drop as unknown as Ref<HTMLDivElement>}>
 				{children}
 			</div>
 		);

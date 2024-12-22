@@ -1,4 +1,4 @@
-import type { PropsWithChildren } from "react";
+import type { PropsWithChildren, Ref } from "react";
 import { useDrag } from "react-dnd";
 import type { DragBoxTypes } from "../types";
 
@@ -33,11 +33,11 @@ export const DragBox = ({
 	}
 
 	return isDragging ? (
-		<div className={combinedClass} ref={dragPreview}>
+		<div className={combinedClass} ref={dragPreview as unknown as Ref<HTMLDivElement>}>
 			{children}
 		</div>
 	) : (
-		<div className={combinedClass} ref={drag}>
+		<div className={combinedClass} ref={drag as unknown as Ref<HTMLDivElement>}>
 			{children}
 		</div>
 	);

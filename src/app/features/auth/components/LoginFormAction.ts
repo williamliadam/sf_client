@@ -1,9 +1,9 @@
 import { useLoginMutation } from '@app/services/auth';
-import { use, useActionState } from 'react';
+import { useActionState } from 'react';
 import { useDispatch } from 'react-redux';
 import { z } from 'zod';
 import { setCredentials } from '../authSlice';
-import { useNavigate, useParams, useSearchParams } from 'react-router';
+import { useNavigate, useSearchParams } from 'react-router';
 
 
 const logingSchema = z.object({
@@ -24,7 +24,7 @@ export type State = {
   };
   message?: string | null;
 };
-export const LoginFormAction = async (previousState: State, formData: FormData, login: any) => {
+export const LoginFormAction = async (_previousState: State, formData: FormData, login: any) => {
   const validatedFields = logingSchema.safeParse({
     email: formData.get("email"),
     password: formData.get("password"),
