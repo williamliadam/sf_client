@@ -11,6 +11,10 @@ env:
   REGISTRY: uhub.service.ucloud.cn
   # github.repository as <account>/<repo>
   IMAGE_NAME: ${{ github.repository }}
+  LINUX_IP: ${{ vars.LINUX_IP }}
+  LINUX_SSH: ${{ secrets.LINUX_SSH }}
+  LINUX_USER: ${{ secrets.LINUX_USER }}
+  LINUX_PATH: ${{ vars.LINUX_PATH }}
 
 
 jobs:
@@ -87,15 +91,9 @@ jobs:
         # against the sigstore community Fulcio instance.
         run: echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}
  
- deploy:
+  deploy:
     runs-on: ubuntu-latest
     needs: build # 确保在构建完成后部署
-
-    env:
-      LINUX_IP: ${{ vars.LINUX_IP }}
-      LINUX_SSH: ${{ secrets.LINUX_SSH }}
-      LINUX_USER: ${{ secrets.LINUX_USER }}
-      LINUX_PATH: ${{ vars.LINUX_PATH }}
 
     steps:
       # Step 1: Checkout the repository
