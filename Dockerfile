@@ -28,6 +28,10 @@ COPY --from=builder /app/dist /usr/share/nginx/html
 # Copy custom Nginx configuration file
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
+# Copy custom entrypoint script
+COPY env.sh /docker-entrypoint.d/env.sh
+RUN chmod +x /docker-entrypoint.d/env.sh
+
 # Expose port 80
 EXPOSE 4173
 
