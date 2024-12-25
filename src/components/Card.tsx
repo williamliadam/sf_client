@@ -6,7 +6,10 @@ type CardProps = PropsWithChildren<{
 
 export const Loading: FC<CardProps> = ({ test_id }) => {
 	return (
-		<div data-testid={test_id} className=" w-full h-full flex justify-center items-center">
+		<div
+			data-testid={test_id}
+			className=" w-full h-full flex justify-center items-center"
+		>
 			This is Card Component
 		</div>
 	);

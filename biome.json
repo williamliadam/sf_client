@@ -6,10 +6,7 @@
 	},
 	"files": {
 		"ignoreUnknown": false,
-		"ignore": [
-			"./public",
-			"node_modules"
-		]
+		"ignore": ["./public", "node_modules"]
 	},
 	"formatter": {
 		"enabled": true,

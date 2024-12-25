@@ -33,7 +33,10 @@ export const DragBox = ({
 	}
 
 	return isDragging ? (
-		<div className={combinedClass} ref={dragPreview as unknown as Ref<HTMLDivElement>}>
+		<div
+			className={combinedClass}
+			ref={dragPreview as unknown as Ref<HTMLDivElement>}
+		>
 			{children}
 		</div>
 	) : (

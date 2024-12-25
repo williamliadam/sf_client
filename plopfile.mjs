@@ -1,8 +1,12 @@
 export default function (plop) {
-	plop.setHelper('pascalCase', (text) => text
-		.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
-		.map((x) => x.charAt(0).toUpperCase() + x.slice(1).toLowerCase())
-		.join(""));
+	plop.setHelper("pascalCase", (text) =>
+		text
+			.match(
+				/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g,
+			)
+			.map((x) => x.charAt(0).toUpperCase() + x.slice(1).toLowerCase())
+			.join(""),
+	);
 	// create your generators here
 	plop.setGenerator("Page", {
 		description: "add a new page",
@@ -19,7 +23,6 @@ export default function (plop) {
 				path: "src/app/pages/{{pascalCase pageName}}Page.tsx",
 				templateFile: "templates/page.hbs",
 			},
-
 		], // array of actions
 	});
 	plop.setGenerator("Common Component", {

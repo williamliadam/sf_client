@@ -41,7 +41,10 @@ export const Dropbox = memo(
 		const combinedClass = `${baseClass} ${className} ${backgroundColor} ${visible}`;
 
 		return (
-			<div className={combinedClass} ref={drop as unknown as Ref<HTMLDivElement>}>
+			<div
+				className={combinedClass}
+				ref={drop as unknown as Ref<HTMLDivElement>}
+			>
 				{children}
 			</div>
 		);

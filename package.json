@@ -1,57 +1,56 @@
 {
-  "name": "vite_demo",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "homepage": "https://williamliadam.github.io/sf_client",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build && cp dist/index.html dist/404.html",
-    "lint": "eslint .",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "@paralleldrive/cuid2": "^2.2.2",
-    "@reduxjs/toolkit": "^2.4.0",
-    "ahooks": "^3.8.4",
-    "i18next": "^24.1.2",
-    "i18next-browser-languagedetector": "^8.0.2",
-    "i18next-http-backend": "^3.0.1",
-    "react": "^19.0.0",
-    "react-dnd": "^16.0.1",
-    "react-dnd-html5-backend": "^16.0.1",
-    "react-dom": "^19.0.0",
-    "react-draggable": "^4.4.6",
-    "react-i18next": "^15.2.0",
-    "react-icons": "^5.4.0",
-    "react-redux": "^9.1.2",
-    "react-router": "^7.0.2",
-    "redux-persist": "^6.0.0",
-    "zod": "^3.24.1"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "1.9.4",
-    "@eslint/js": "^9.15.0",
-    "@types/node": "^22.10.1",
-    "@types/react": "^19.0.1",
-    "@types/react-dom": "^18.3.1",
-    "@vitejs/plugin-react-swc": "^3.5.0",
-    "autoprefixer": "^10.4.20",
-    "eslint": "^9.15.0",
-    "eslint-plugin-react-hooks": "^5.0.0",
-    "eslint-plugin-react-refresh": "^0.4.14",
-    "globals": "^15.12.0",
-    "msw": "^2.6.8",
-    "postcss": "^8.4.49",
-    "tailwindcss": "^3.4.15",
-    "typescript": "~5.6.2",
-    "typescript-eslint": "^8.15.0",
-    "vite": "^6.0.0",
-    "vite-plugin-svgr": "^4.3.0"
-  },
-  "msw": {
-    "workerDirectory": [
-      "public"
-    ]
-  }
+	"name": "vite_demo",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"homepage": "https://williamliadam.github.io/sf_client",
+	"scripts": {
+		"dev": "vite",
+		"build": "tsc -b && vite build && cp dist/index.html dist/404.html",
+		"lint": "biome lint",
+		"format": "biome format --write .",
+		"preview": "vite preview"
+	},
+	"dependencies": {
+		"@paralleldrive/cuid2": "^2.2.2",
+		"@reduxjs/toolkit": "^2.4.0",
+		"ahooks": "^3.8.4",
+		"i18next": "^24.1.2",
+		"i18next-browser-languagedetector": "^8.0.2",
+		"i18next-http-backend": "^3.0.1",
+		"react": "^19.0.0",
+		"react-dnd": "^16.0.1",
+		"react-dnd-html5-backend": "^16.0.1",
+		"react-dom": "^19.0.0",
+		"react-draggable": "^4.4.6",
+		"react-i18next": "^15.2.0",
+		"react-icons": "^5.4.0",
+		"react-redux": "^9.1.2",
+		"react-router": "^7.0.2",
+		"redux-persist": "^6.0.0",
+		"zod": "^3.24.1"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"@eslint/js": "^9.15.0",
+		"@types/node": "^22.10.1",
+		"@types/react": "^19.0.1",
+		"@types/react-dom": "^18.3.1",
+		"@vitejs/plugin-react-swc": "^3.5.0",
+		"autoprefixer": "^10.4.20",
+		"eslint": "^9.15.0",
+		"eslint-plugin-react-hooks": "^5.0.0",
+		"eslint-plugin-react-refresh": "^0.4.14",
+		"globals": "^15.12.0",
+		"msw": "^2.6.8",
+		"postcss": "^8.4.49",
+		"tailwindcss": "^3.4.15",
+		"typescript": "~5.6.2",
+		"typescript-eslint": "^8.15.0",
+		"vite": "^6.0.0",
+		"vite-plugin-svgr": "^4.3.0"
+	},
+	"msw": {
+		"workerDirectory": ["public"]
+	}
 }
