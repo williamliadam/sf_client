@@ -10,13 +10,15 @@
 	},
 	"formatter": {
 		"enabled": true,
-		"indentStyle": "tab"
+		"indentStyle": "tab",
+		"ignore": ["./public", "node_modules", "dist", "*.json"]
 	},
 	"organizeImports": {
 		"enabled": true
 	},
 	"linter": {
 		"enabled": true,
+		"ignore": ["./public", "node_modules", "dist", "*.json"],
 		"rules": {
 			"recommended": true,
 			"suspicious": {
