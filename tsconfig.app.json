@@ -24,11 +24,11 @@
     "baseUrl": "./",
     "paths": {
       "@app/*": ["src/app/*"],
-      "@store/*": ["src/app/store/*"],
+      "@store/*": ["src/store/*"],
       "@components/*": ["src/components/*"],
-      "@services/*": ["src/app/services/*"],
-      "@utils/*": ["src/app/utils/*"],
-      "@features/*": ["src/app/features/*"],
+      "@services/*": ["src/services/*"],
+      "@utils/*": ["src/utils/*"],
+      "@features/*": ["src/features/*"],
       "@assets/*": ["src/assets/*"],
       "@layouts/*": ["src/app/layouts/*"],
     }

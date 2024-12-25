@@ -1,9 +1,9 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./main.css";
-import App from "./app/App.tsx";
+import App from "@app/App.tsx";
 import { Provider } from "react-redux";
-import { persistor, store } from "./app/store/index.ts";
+import { persistor, store } from "@store/index.ts";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { BrowserRouter } from "react-router";

@@ -4,7 +4,7 @@ import { DayPlanPage } from "./pages/DayPlanPage";
 import { HomePage } from "./pages/HomePage";
 import { LoginPage } from "./pages/LoginPage";
 import { NoMatchPage } from "./pages/NoMatchPage";
-import { ProtectedRoute } from "./utils/ProtectedRoute";
+import { ProtectedRoute } from "@utils/ProtectedRoute";
 
 function App() {
 	return (
