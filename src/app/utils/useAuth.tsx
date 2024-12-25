@@ -1,4 +1,4 @@
-import { selectCurrentUser } from "@app/features/auth/authSlice";
+import { selectCurrentUser } from "@features/auth/authSlice";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 

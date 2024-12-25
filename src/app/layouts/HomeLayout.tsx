@@ -1,11 +1,11 @@
-import { NavLink, Outlet } from "react-router";
-import Dish from "@assets/dish.svg?react";
-import { useLanguage } from "@app/utils/useLanguage";
-import { LanguageSwitch } from "@app/components/LanguageSwitch";
 import { useState } from "react";
-import { useOutsideClick } from "@app/utils/useOutsideClick";
+import { NavLink, Outlet } from "react-router";
 import { useDispatch } from "react-redux";
-import { logout } from "@app/features/auth/authSlice";
+import { LanguageSwitch } from "@components/LanguageSwitch";
+import { useLanguage } from "@utils/useLanguage";
+import { useOutsideClick } from "@utils/useOutsideClick";
+import Dish from "@assets/dish.svg?react";
+import { logout } from "@features/auth/authSlice";
 
 export function HomeLayout() {
 	const [language, setLanguage] = useLanguage();

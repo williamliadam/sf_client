@@ -1,4 +1,4 @@
-import { LoginView } from "@app/features/auth/LoginView";
+import { LoginView } from "@features/auth/LoginView";
 
 export const LoginPage = () => {
 	return (

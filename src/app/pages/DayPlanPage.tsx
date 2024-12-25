@@ -1,4 +1,4 @@
-import { DayPlanView } from "@app/features/day-plan/DayPlanView";
+import { DayPlanView } from "@features/day-plan/DayPlanView";
 
 export const DayPlanPage = () => {
 	return <DayPlanView />;

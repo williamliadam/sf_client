@@ -1,7 +1,7 @@
-import dayPlanReducer from "@app/features/day-plan/slices/dayPlanSlice";
-import authReducer from "@app/features/auth/authSlice";
+import dayPlanReducer from "@features/day-plan/slices/dayPlanSlice";
+import authReducer from "@features/auth/authSlice";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import apiReducer, { emptySplitApi } from "@app/services/emptySliceApi";
+import apiReducer, { emptySplitApi } from "@services/emptySliceApi";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
 

@@ -2,7 +2,7 @@ import { TiDelete } from "react-icons/ti";
 import { DishItem } from "./DishItem";
 import type { MenuType } from "../types";
 import { useState } from "react";
-import { useOutsideClick } from "@app/utils/useOutsideClick";
+import { useOutsideClick } from "@utils/useOutsideClick";
 
 type MenuItemProps = {
 	index: number;

@@ -1,4 +1,4 @@
-import { emptySplitApi } from '@app/services/emptySliceApi'
+import { emptySplitApi } from '@services/emptySliceApi'
 
 export interface User {
   first_name: string

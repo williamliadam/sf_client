@@ -1,4 +1,4 @@
-import { useLoginMutation } from '@app/services/auth';
+import { useLoginMutation } from '@services/auth';
 import { useActionState } from 'react';
 import { useDispatch } from 'react-redux';
 import { z } from 'zod';

@@ -1,5 +1,5 @@
-import type { RecipeType } from "@app/features/day-plan/types"
-import { emptySplitApi } from "@app/services/emptySliceApi"
+import type { RecipeType } from "@features/day-plan/types"
+import { emptySplitApi } from "@services/emptySliceApi"
 
 
 

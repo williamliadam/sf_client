@@ -25,7 +25,7 @@
     "paths": {
       "@app/*": ["src/app/*"],
       "@store/*": ["src/app/store/*"],
-      "@components/*": ["src/app/components/*"],
+      "@components/*": ["src/components/*"],
       "@services/*": ["src/app/services/*"],
       "@utils/*": ["src/app/utils/*"],
       "@features/*": ["src/app/features/*"],

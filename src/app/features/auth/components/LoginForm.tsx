@@ -1,7 +1,7 @@
 import { useTransition } from "react";
 import { useLoginFormState } from "./LoginFormAction";
 import { useTranslation } from "react-i18next";
-import { TextInput } from "@app/components/TextInput";
+import { TextInput } from "@components/TextInput";
 
 export const LoginForm = () => {
   const [state, formAction] = useLoginFormState();
