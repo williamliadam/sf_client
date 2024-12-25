@@ -2,16 +2,18 @@ import { NavLink, Outlet } from "react-router";
 import Dish from "@assets/dish.svg?react";
 import { useLanguage } from "@app/utils/useLanguage";
 import { LanguageSwitch } from "@app/components/LanguageSwitch";
-import { useRef, useState } from "react";
-import { useClickAway } from "ahooks";
+import { useState } from "react";
+import { useOutsideClick } from "@app/utils/useOutsideClick";
+import { useDispatch } from "react-redux";
+import { logout } from "@app/features/auth/authSlice";
 
 export function HomeLayout() {
 	const [language, setLanguage] = useLanguage();
 	const [showLogout, setShowLogout] = useState(false);
-	const ref = useRef<HTMLButtonElement>(null);
-	useClickAway(() => {
+	const dispatch = useDispatch();
+	const ref = useOutsideClick<HTMLDivElement>(() => {
 		setShowLogout(false);
-	}, ref);
+	});
 	return (
 		<section className="min-h-screen flex flex-col">
 			<header className="bg-gradient-to-r from-blue-500 to-purple-600 p-6 shadow-lg">
@@ -46,29 +48,43 @@ export function HomeLayout() {
 								setLanguage(state ? "zh" : "en");
 							}}
 						/>
-						<div
-							onClick={() => setShowLogout(!showLogout)}
-							onKeyDown={() => {}}
-							className="shadow-md hover:scale-105 cursor-pointer transition-transform ease-in-out rounded-full w-12 h-12 bg-slate-500 text-white flex justify-center items-center"
-						>
-							U
-						</div>
-
-						{showLogout && (
-							<div className="absolute right-2 top-20 mt-2 w-48 bg-white border border-gray-300 rounded-md shadow-lg">
-								<button
-									ref={ref}
-									type="button"
-									className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-									onClick={() => {
-										// 处理退出逻辑
-										console.log("Logout");
-									}}
+						<div ref={ref}>
+							<div
+								onClick={() => setShowLogout((prev) => !prev)}
+								onKeyDown={() => {}}
+								className="shadow-md hover:scale-105 cursor-pointer transition-transform ease-in-out rounded-full w-12 h-12 bg-slate-500 text-white flex justify-center items-center"
+							>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									className="h-6 w-6"
+									fill="none"
+									viewBox="0 0 24 24"
+									stroke="currentColor"
 								>
-									Logout
-								</button>
+									<title>Avatar</title>
+									<path
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										strokeWidth={2}
+										d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+									/>
+								</svg>
 							</div>
-						)}
+							{showLogout && (
+								<div className="absolute right-2 top-20 mt-2 w-48 bg-white border border-gray-300 rounded-md shadow-lg">
+									<button
+										type="button"
+										className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+										onClick={() => {
+											dispatch(logout());
+											setShowLogout(false);
+										}}
+									>
+										Logout
+									</button>
+								</div>
+							)}
+						</div>
 					</div>
 				</div>
 			</header>

@@ -56,7 +56,6 @@ export const useLoginFormState = () => {
       const redirectTo = searchParams.get('redirectTo')
       navigate(redirectTo || '/')
     } catch (err) {
-      console.error(err)
       return {
         message: 'loginError'
       }

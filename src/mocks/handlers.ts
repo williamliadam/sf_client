@@ -9,7 +9,7 @@ export const handlers = [
       lastName: 'Maverick',
     })
   }),
-  http.get("/api/recipes", () => {
+  http.get("/api/recipe", () => {
     return HttpResponse.json([
       { id: 1, name: "Burger" },
       { id: 2, name: "Pizza" },
@@ -17,7 +17,7 @@ export const handlers = [
       { id: 4, name: "Rice" },
     ])
   }),
-  http.post('/api/login', async () => {
+  http.post('/api/auth/login', async () => {
     await delay(1000)
     return HttpResponse.json({
       user: {
