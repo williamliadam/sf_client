@@ -15,11 +15,9 @@ const loginSchema = z.object({
 		.email({
 			message: "emailInvalid",
 		}),
-	password: z
-		.string({
-			message: "passwordMin",
-		})
-		.min(6),
+	password: z.string().min(6, {
+		message: "passwordMin",
+	}),
 });
 export type LoginFormData = z.infer<typeof loginSchema>;
 

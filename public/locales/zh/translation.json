@@ -11,6 +11,7 @@
 	"languageCode": "zh",
 	"menu": {
 		"home": "首页",
+		"dayPlan": "每日计划",
 		"about": "关于",
 		"contact": "联系",
 		"login": "登录",
@@ -21,5 +22,6 @@
 		"user": "用户",
 		"setting": "设置",
 		"language": "语言"
-	}
+	},
+	"brandName": "箪食"
 }

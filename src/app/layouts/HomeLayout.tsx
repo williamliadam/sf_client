@@ -6,6 +6,7 @@ import { useLanguage } from "@utils/useLanguage";
 import { useOutsideClick } from "@utils/useOutsideClick";
 import Dish from "@assets/dish.svg?react";
 import { logout } from "@features/auth/authSlice";
+import { useTranslation } from "react-i18next";
 
 export function HomeLayout() {
 	const [language, setLanguage] = useLanguage();
@@ -14,13 +15,14 @@ export function HomeLayout() {
 	const ref = useOutsideClick<HTMLDivElement>(() => {
 		setShowLogout(false);
 	});
+	const { t } = useTranslation("translation");
 	return (
 		<section className="min-h-screen flex flex-col">
 			<header className="bg-gradient-to-r from-blue-500 to-purple-600 p-6 shadow-lg">
 				<div className="flex justify-between items-center">
 					<div className="text-2xl font-bold text-white font-serif flex gap-2 items-center">
 						<Dish />
-						SFood
+						{t("brandName")}
 						<nav className="flex gap-4">
 							<NavLink
 								to="/"
@@ -28,7 +30,7 @@ export function HomeLayout() {
 									`${isActive ? "bg-blue-700" : "bg-blue-800"} text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-600 transition`
 								}
 							>
-								Home
+								{t("menu.home")}
 							</NavLink>
 							<NavLink
 								to="/day_plan"
@@ -36,7 +38,7 @@ export function HomeLayout() {
 									`${isActive ? "bg-blue-700" : "bg-blue-800"} text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-600 transition`
 								}
 							>
-								Day Plan
+								{t("menu.dayPlan")}
 							</NavLink>
 						</nav>
 					</div>
@@ -80,7 +82,7 @@ export function HomeLayout() {
 											setShowLogout(false);
 										}}
 									>
-										Logout
+										{t("menu.logout")}
 									</button>
 								</div>
 							)}

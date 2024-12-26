@@ -51,7 +51,16 @@ export const DishItem: FC<DishItemProps> = ({
 						}
 					}}
 				>
-					<span className="material-icons">delete</span>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="24"
+						height="24"
+						viewBox="0 0 24 24"
+						fill="white"
+					>
+						<title>Delete</title>
+						<path d="M3 6l3 18h12l3-18h-18zm16.5 2l-1.5 14h-10l-1.5-14h13zm-10.5-4v-2h6v2h5v2h-16v-2h5zm2 4h2v10h-2v-10zm4 0h2v10h-2v-10zm-8 0h2v10h-2v-10z" />
+					</svg>
 				</div>
 			</DragBox>
 

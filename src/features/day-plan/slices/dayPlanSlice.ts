@@ -1,6 +1,7 @@
-import type { RootState } from "@app/store";
+import type { RootState } from "@store/index";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { createId } from "@paralleldrive/cuid2";
+import { t } from "i18next";
 import type { DayPlanType, DishType, MenuType, RecipeType } from "../types";
 
 export interface DayPlanState {
@@ -64,9 +65,10 @@ export const dayPlanSlice = createSlice({
 					menu.dishes.push(newDish);
 				}
 			} else {
+				const initMenuName = t("newMenu", { ns: "dayPlan" });
 				state.menus.push({
 					id: createId(),
-					name: "New Menu",
+					name: initMenuName,
 					dishes: [newDish],
 				});
 			}
