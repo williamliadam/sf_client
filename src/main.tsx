@@ -1,4 +1,4 @@
-import { StrictMode } from "react";
+import { StrictMode, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import "./main.css";
 import App from "@app/App.tsx";
@@ -9,6 +9,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import { BrowserRouter } from "react-router";
 import "./i18n";
 import { PersistGate } from "redux-persist/integration/react";
+import { Loading } from "@components/Loading";
 async function enableMocking() {
 	if (import.meta.env.MODE !== "development") {
 		return;
@@ -28,7 +29,9 @@ function initApp() {
 					<PersistGate loading={null} persistor={persistor}>
 						<DndProvider backend={HTML5Backend}>
 							<BrowserRouter basename={import.meta.env.VITE_PUBLIC_URL || "/"}>
-								<App />
+								<Suspense fallback={<Loading />}>
+									<App />
+								</Suspense>
 							</BrowserRouter>
 						</DndProvider>
 					</PersistGate>
