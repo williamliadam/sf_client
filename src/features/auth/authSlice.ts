@@ -1,5 +1,5 @@
 import type { User } from "@services/auth";
-import type { RootState } from "@app/store";
+import type { RootState } from "@store/index";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
