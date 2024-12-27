@@ -27,4 +27,14 @@ export const handlers = [
 			token,
 		});
 	}),
+	http.post("/api/auth/refreshToken", async () => {
+		await delay(1000);
+		return HttpResponse.json({
+			user: {
+				first_name: "Test",
+				last_name: "User",
+			},
+			token,
+		});
+	}),
 ];

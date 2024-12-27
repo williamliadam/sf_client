@@ -6,6 +6,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 type AuthState = {
 	user: User | null;
 	token: string | null;
+	refreshToken: string | null;
 };
 
 const slice = createSlice({
@@ -15,11 +16,12 @@ const slice = createSlice({
 		setCredentials: (
 			state,
 			{
-				payload: { user, token },
-			}: PayloadAction<{ user: User; token: string }>,
+				payload: { user, token, refreshToken },
+			}: PayloadAction<{ user: User; token: string; refreshToken: string }>,
 		) => {
 			state.user = user;
 			state.token = token;
+			state.refreshToken = refreshToken;
 		},
 		logout: (state) => {
 			state.user = null;

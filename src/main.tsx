@@ -11,7 +11,10 @@ import "./i18n";
 import { PersistGate } from "redux-persist/integration/react";
 import { Loading } from "@components/Loading";
 async function enableMocking() {
-	if (import.meta.env.MODE !== "development") {
+	if (
+		import.meta.env.MODE !== "development" ||
+		import.meta.env.VITE_USE_MOCKS !== "true"
+	) {
 		return;
 	}
 	const { worker } = await import("./mocks/browser");
