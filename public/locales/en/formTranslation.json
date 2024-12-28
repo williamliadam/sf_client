@@ -7,12 +7,24 @@
     "label": "Password",
     "placeholder": "Please Enter Password"
   },
+  "confirmPassword":{
+    "label": "Confirm Password",
+    "placeholder": "Please Enter Confirm Password"
+  },
+  "verificationCode":{
+    "label": "Verification Code",
+    "placeholder": "Please Enter Verification Code"
+  },
+  "captcha":{
+    "label": "Captcha",
+    "placeholder": "Please Enter Captcha"
+  },
   "loading": "Loading...",
   "login": "Login",
   "register": "Register",
   "forgotPassword": "Forgot Password",
   "resetPassword": "Reset Password",
-  "confirmPassword": "Confirm Password",
+
   "newPassword": "New Password",
   "submit": "Submit",
   "logout": "Logout",

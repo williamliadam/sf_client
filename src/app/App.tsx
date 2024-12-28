@@ -5,6 +5,7 @@ import { HomePage } from "./pages/HomePage";
 import { LoginPage } from "./pages/LoginPage";
 import { NoMatchPage } from "./pages/NoMatchPage";
 import { ProtectedRoute } from "@utils/ProtectedRoute";
+import { RegisterPage } from "./pages/RegisterPage";
 
 function App() {
 	return (
@@ -21,6 +22,7 @@ function App() {
 				/>
 			</Route>
 			<Route path="/login" element={<LoginPage />} />
+			<Route path="/register" element={<RegisterPage />} />
 			<Route path="*" element={<NoMatchPage />} />
 		</Routes>
 	);

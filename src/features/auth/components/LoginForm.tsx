@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { TextInput } from "@components/TextInput";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useLoginMutation } from "@services/auth";
@@ -27,7 +27,7 @@ export function LoginForm() {
 	const [searchParams] = useSearchParams();
 	const { t } = useTranslation("formTranslation");
 	const [login] = useLoginMutation();
-	const { control, handleSubmit } = useForm<LoginFormData>({
+	const methods = useForm<LoginFormData>({
 		resolver: zodResolver(loginSchema),
 		defaultValues: {
 			email: "",
@@ -35,7 +35,7 @@ export function LoginForm() {
 		},
 	});
 
-	const onSubmit = handleSubmit(async (data) => {
+	const onSubmit = methods.handleSubmit(async (data) => {
 		try {
 			const user = await login(data).unwrap();
 			dispatch(setCredentials(user));
@@ -49,7 +49,7 @@ export function LoginForm() {
 	});
 
 	return (
-		<div className=" w-full flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-purple-600">
+		<FormProvider {...methods}>
 			<form
 				onSubmit={onSubmit}
 				className="flex flex-col w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-lg"
@@ -58,8 +58,8 @@ export function LoginForm() {
 					{t("login")}
 				</h2>
 
-				<TextInput name="email" type="email" control={control} />
-				<TextInput name="password" type="password" control={control} />
+				<TextInput name="email" type="email" />
+				<TextInput name="password" type="password" />
 				<button
 					type="submit"
 					className={`w-full py-2 text-white rounded-lg ${"bg-blue-500 hover:bg-blue-600"}`}
@@ -67,6 +67,6 @@ export function LoginForm() {
 					{t("login")}
 				</button>
 			</form>
-		</div>
+		</FormProvider>
 	);
 }

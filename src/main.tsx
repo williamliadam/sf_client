@@ -10,6 +10,7 @@ import { BrowserRouter } from "react-router";
 import "./i18n";
 import { PersistGate } from "redux-persist/integration/react";
 import { Loading } from "@components/Loading";
+import { ToastProvider } from "@components/ToastProvider";
 async function enableMocking() {
 	if (
 		import.meta.env.MODE !== "development" ||
@@ -33,7 +34,9 @@ function initApp() {
 						<DndProvider backend={HTML5Backend}>
 							<BrowserRouter basename={import.meta.env.VITE_PUBLIC_URL || "/"}>
 								<Suspense fallback={<Loading />}>
-									<App />
+									<ToastProvider>
+										<App />
+									</ToastProvider>
 								</Suspense>
 							</BrowserRouter>
 						</DndProvider>
