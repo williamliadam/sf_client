@@ -7,8 +7,6 @@ import { TextInput } from "@components/TextInput";
 import EmailVerifyInput from "@components/EmailVerifyInput";
 import { useSignupMutation, useVerifyEmailMutation } from "@services/auth";
 import { useToast } from "@components/ToastProvider";
-import { useDispatch } from "react-redux";
-import { setCredentials } from "../authSlice";
 import { useNavigate } from "react-router";
 
 const schema = z

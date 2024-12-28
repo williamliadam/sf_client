@@ -1,30 +1,40 @@
+import { Suspense, lazy } from "react";
 import { Routes, Route } from "react-router";
 import { HomeLayout } from "@layouts/HomeLayout";
-import { DayPlanPage } from "./pages/DayPlanPage";
-import { HomePage } from "./pages/HomePage";
-import { LoginPage } from "./pages/LoginPage";
-import { NoMatchPage } from "./pages/NoMatchPage";
+import { Loading } from "@components/Loading";
 import { ProtectedRoute } from "@utils/ProtectedRoute";
-import { RegisterPage } from "./pages/RegisterPage";
+
+const DayPlanPage = lazy(() => import("./pages/DayPlanPage"));
+const HomePage = lazy(() => import("./pages/HomePage"));
+const LoginPage = lazy(() => import("./pages/LoginPage"));
+const NoMatchPage = lazy(() => import("./pages/NoMatchPage"));
+const RegisterPage = lazy(() => import("./pages/RegisterPage"));
 
 function App() {
 	return (
-		<Routes>
-			<Route path="/" element={<HomeLayout />}>
-				<Route index element={<HomePage />} />
+		<Suspense fallback={<Loading />}>
+			<Routes>
 				<Route
-					path="day_plan"
-					element={
-						<ProtectedRoute>
-							<DayPlanPage />
-						</ProtectedRoute>
-					}
-				/>
-			</Route>
-			<Route path="/login" element={<LoginPage />} />
-			<Route path="/register" element={<RegisterPage />} />
-			<Route path="*" element={<NoMatchPage />} />
-		</Routes>
+					path="/"
+					element={<HomeLayout />}
+					hasErrorBoundary
+					errorElement={<div>error</div>}
+				>
+					<Route index element={<HomePage />} />
+					<Route
+						path="day_plan"
+						element={
+							<ProtectedRoute>
+								<DayPlanPage />
+							</ProtectedRoute>
+						}
+					/>
+					<Route path="login" element={<LoginPage />} />
+					<Route path="register" element={<RegisterPage />} />
+					<Route path="*" element={<NoMatchPage />} />
+				</Route>
+			</Routes>
+		</Suspense>
 	);
 }
 

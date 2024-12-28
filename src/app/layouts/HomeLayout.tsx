@@ -95,6 +95,9 @@ export function HomeLayout() {
 				<div className="container mx-auto">
 					<div className="flex justify-between items-center mb-4">
 						<div className="text-lg font-bold">SFood</div>
+						<div className="text-xs">
+							version: {import.meta.env.VITE_APP_VERSION}
+						</div>
 						<nav className="flex gap-4">
 							<a href="/about-us" className="hover:underline">
 								About Us

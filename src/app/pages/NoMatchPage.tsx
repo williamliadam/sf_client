@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 
-export const NoMatchPage = () => {
+const NoMatchPage = () => {
 	return (
 		<div className="flex flex-col justify-center items-center h-screen bg-gradient-to-r from-blue-500 to-purple-600 text-white">
 			<h1 className="text-9xl font-bold mb-4">404</h1>
@@ -18,3 +18,5 @@ export const NoMatchPage = () => {
 		</div>
 	);
 };
+
+export default NoMatchPage;

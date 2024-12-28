@@ -50,4 +50,9 @@ export const authApi = emptySplitApi.injectEndpoints({
 	}),
 });
 
-export const { useLoginMutation, useProtectedMutation, useVerifyEmailMutation, useSignupMutation } = authApi;
+export const {
+	useLoginMutation,
+	useProtectedMutation,
+	useVerifyEmailMutation,
+	useSignupMutation,
+} = authApi;
